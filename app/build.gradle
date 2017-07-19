@@ -20,4 +20,5 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'org.bitbucket.gruveo:gruveo-android-sdk:0.1.6'
 }
