@@ -1,5 +1,6 @@
 package com.gruveo.sdk.java;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.main_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String result = new Gruveo.Builder(MainActivity.this).callCode("gruveorocks").clientId("demo").build();
+                final String result = new Gruveo.Builder(MainActivity.this).callCode("gruveorocks").clientId("demo").eventsListener(eventsListener).build();
                 switch (result) {
                     case Gruveo.GRV_RES_MISSING_CALL_CODE: {
                         break;
@@ -40,4 +41,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private Gruveo.EventsListener eventsListener = new Gruveo.EventsListener() {
+        @Override
+        public void callInit(boolean videoCall, String code) {
+
+        }
+
+        @Override
+        public void callEstablished(String code) {
+
+        }
+
+        @Override
+        public void callEnd(Intent data, boolean isInForeground) {
+
+        }
+    };
 }
