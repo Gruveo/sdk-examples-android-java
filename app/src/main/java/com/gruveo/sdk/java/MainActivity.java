@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
             case Gruveo.GRV_RES_INVALID_CREDENTIALS: {
                 break;
             }
+            case Gruveo.GRV_RES_MISSING_SIGNER_URL: {
+                break;
+            }
             case Gruveo.GRV_RES_OFFLINE: {
                 break;
             }
