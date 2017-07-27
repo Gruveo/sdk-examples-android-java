@@ -34,8 +34,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCall(Boolean videoCall) {
+        final Bundle otherExtras = new Bundle();
+        otherExtras.putBoolean(GrvConstants.GRV_EXTRA_VIBRATE_IN_CHAT, false);
+
         final String code = ((EditText) findViewById(R.id.main_edittext)).getText().toString();
-        final String result = new Gruveo.Builder(this).callCode(code).videoCall(videoCall).clientId("demo").requestCode(REQUEST_CALL).eventsListener(eventsListener).build();
+        final String result = new Gruveo.Builder(this)
+                .callCode(code)
+                .videoCall(videoCall)
+                .clientId("demo")
+                .requestCode(REQUEST_CALL)
+                .otherExtras(otherExtras)
+                .eventsListener(eventsListener)
+                .build();
+
         switch (result) {
             case Gruveo.GRV_RES_MISSING_CALL_CODE: {
                 break;
