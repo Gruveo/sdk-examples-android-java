@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CALL && resultCode == RESULT_OK && data != null) {
-            CallErrorType error = (CallErrorType) data.getSerializableExtra(GrvConstants.GRV_EXTRA_CALL_ERROR);
-            String callCode = data.getStringExtra(GrvConstants.GRV_EXTRA_CALL_CODE);
-            int duration = data.getIntExtra(GrvConstants.GRV_EXTRA_CALL_DURATION, 0);
-            int messagesExchanged = data.getIntExtra(GrvConstants.GRV_EXTRA_MESSAGES_EXCHANGED, 0);
+            CallErrorType error = (CallErrorType) data.getSerializableExtra(GrvConstants.GRV_RES_CALL_ERROR);
+            String callCode = data.getStringExtra(GrvConstants.GRV_RES_CALL_CODE);
+            int duration = data.getIntExtra(GrvConstants.GRV_RES_CALL_DURATION, 0);
+            int messagesExchanged = data.getIntExtra(GrvConstants.GRV_RES_MESSAGES_EXCHANGED, 0);
 
             switch (error) {
                 case BUSY: {
