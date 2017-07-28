@@ -10,8 +10,17 @@ import com.gruveo.sdk.Gruveo;
 import com.gruveo.sdk.model.CallErrorType;
 import com.gruveo.sdk.model.GrvConstants;
 
+import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CALL = 1;
+    private static final String SIGNER_URL = "https://api-demo.gruveo.com/signer";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
             case Gruveo.GRV_RES_INVALID_CREDENTIALS: {
                 break;
             }
-            case Gruveo.GRV_RES_MISSING_SIGNER_URL: {
-                break;
-            }
             case Gruveo.GRV_RES_OFFLINE: {
                 break;
             }
@@ -73,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Gruveo.EventsListener eventsListener = new Gruveo.EventsListener() {
+        @Override
+        public void tokenReceived(String token) {
+            try {
+                Gruveo.Companion.tokenSigned(signToken(token));
+            } catch (IOException ignored) {
+            }
+        }
+
         @Override
         public void callInit(boolean videoCall, String code) {
         }
@@ -85,6 +99,17 @@ public class MainActivity extends AppCompatActivity {
         public void callEnd(Intent data, boolean isInForeground) {
         }
     };
+
+    private String signToken(String token) throws IOException {
+        RequestBody body = RequestBody.create(MediaType.parse("text/plain"), token);
+        Request request = new Request.Builder()
+                .url(SIGNER_URL)
+                .post(body)
+                .build();
+
+        Response response = new OkHttpClient().newCall(request).execute();
+        return response.body().string();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
