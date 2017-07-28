@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Gruveo.EventsListener eventsListener = new Gruveo.EventsListener() {
         @Override
-        public void tokenReceived(String token) {
+        public void requestToSignApiAuthToken(String token) {
             try {
-                Gruveo.Companion.tokenSigned(signToken(token));
+                Gruveo.Companion.authorize(signToken(token));
             } catch (IOException ignored) {
             }
         }
