@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CALL && resultCode == RESULT_OK && data != null) {
             CallErrorType error = (CallErrorType) data.getSerializableExtra(Gruveo.GRV_RES_CALL_ERROR);
             String callCode = data.getStringExtra(Gruveo.GRV_RES_CALL_CODE);
+            String leftMessageTo = data.getStringExtra(Gruveo.GRV_RES_LEFT_MESSAGE_TO);
             int duration = data.getIntExtra(Gruveo.GRV_RES_CALL_DURATION, 0);
             int messagesExchanged = data.getIntExtra(Gruveo.GRV_RES_MESSAGES_EXCHANGED, 0);
 
