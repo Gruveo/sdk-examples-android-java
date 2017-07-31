@@ -8,7 +8,6 @@ import android.widget.EditText;
 
 import com.gruveo.sdk.Gruveo;
 import com.gruveo.sdk.model.CallErrorType;
-import com.gruveo.sdk.model.GrvConstants;
 
 import java.io.IOException;
 
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initCall(Boolean videoCall) {
         final Bundle otherExtras = new Bundle();
-        otherExtras.putBoolean(GrvConstants.GRV_EXTRA_VIBRATE_IN_CHAT, false);
+        otherExtras.putBoolean(Gruveo.GRV_EXTRA_VIBRATE_IN_CHAT, false);
 
         final String code = ((EditText) findViewById(R.id.main_edittext)).getText().toString();
         final String result = new Gruveo.Builder(this)
@@ -57,19 +56,16 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         switch (result) {
-            case Gruveo.GRV_RES_MISSING_CALL_CODE: {
+            case Gruveo.GRV_INIT_MISSING_CALL_CODE: {
                 break;
             }
-            case Gruveo.GRV_RES_INVALID_CALL_CODE: {
+            case Gruveo.GRV_INIT_INVALID_CALL_CODE: {
                 break;
             }
-            case Gruveo.GRV_RES_MISSING_CREDENTIALS: {
+            case Gruveo.GRV_INIT_MISSING_CLIENT_ID: {
                 break;
             }
-            case Gruveo.GRV_RES_INVALID_CREDENTIALS: {
-                break;
-            }
-            case Gruveo.GRV_RES_OFFLINE: {
+            case Gruveo.GRV_INIT_OFFLINE: {
                 break;
             }
             default: {
@@ -115,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CALL && resultCode == RESULT_OK && data != null) {
-            CallErrorType error = (CallErrorType) data.getSerializableExtra(GrvConstants.GRV_RES_CALL_ERROR);
-            String callCode = data.getStringExtra(GrvConstants.GRV_RES_CALL_CODE);
-            int duration = data.getIntExtra(GrvConstants.GRV_RES_CALL_DURATION, 0);
-            int messagesExchanged = data.getIntExtra(GrvConstants.GRV_RES_MESSAGES_EXCHANGED, 0);
+            CallErrorType error = (CallErrorType) data.getSerializableExtra(Gruveo.GRV_RES_CALL_ERROR);
+            String callCode = data.getStringExtra(Gruveo.GRV_RES_CALL_CODE);
+            int duration = data.getIntExtra(Gruveo.GRV_RES_CALL_DURATION, 0);
+            int messagesExchanged = data.getIntExtra(Gruveo.GRV_RES_MESSAGES_EXCHANGED, 0);
 
             switch (error) {
                 case BUSY: {
@@ -149,6 +145,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
                 case NO_CONNECTION: {
+                    break;
+                }
+                case INVALID_CREDENTIALS: {
                     break;
                 }
                 case NONE: {
