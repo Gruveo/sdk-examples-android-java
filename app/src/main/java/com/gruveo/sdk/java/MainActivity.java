@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void callEnd(Intent data, boolean isInForeground) {
+            parseCallExtras(data);
         }
     };
 
@@ -111,40 +112,44 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CALL && resultCode == RESULT_OK && data != null) {
-            CallErrorType error = (CallErrorType) data.getSerializableExtra(Gruveo.GRV_RES_CALL_ERROR);
-            String callCode = data.getStringExtra(Gruveo.GRV_RES_CALL_CODE);
-            String leftMessageTo = data.getStringExtra(Gruveo.GRV_RES_LEFT_MESSAGE_TO);
-            int duration = data.getIntExtra(Gruveo.GRV_RES_CALL_DURATION, 0);
-            int messagesExchanged = data.getIntExtra(Gruveo.GRV_RES_MESSAGES_EXCHANGED, 0);
+            parseCallExtras(data);
+        }
+    }
 
-            switch (error) {
-                case BUSY: {
-                    break;
-                }
-                case DIRECT_BUSY: {
-                    break;
-                }
-                case DIRECT_UNREACHABLE: {
-                    break;
-                }
-                case DIRECT_NONEXIST: {
-                    break;
-                }
-                case FREE_DEMO_ENDED: {
-                    break;
-                }
-                case ROOM_LIMIT_REACHED: {
-                    break;
-                }
-                case NO_CONNECTION: {
-                    break;
-                }
-                case INVALID_CREDENTIALS: {
-                    break;
-                }
-                default: {      // no error
-                    break;
-                }
+    private void parseCallExtras(Intent data) {
+        CallErrorType error = (CallErrorType) data.getSerializableExtra(Gruveo.GRV_RES_CALL_ERROR);
+        String callCode = data.getStringExtra(Gruveo.GRV_RES_CALL_CODE);
+        String leftMessageTo = data.getStringExtra(Gruveo.GRV_RES_LEFT_MESSAGE_TO);
+        int duration = data.getIntExtra(Gruveo.GRV_RES_CALL_DURATION, 0);
+        int messagesExchanged = data.getIntExtra(Gruveo.GRV_RES_MESSAGES_SENT, 0);
+
+        switch (error) {
+            case BUSY: {
+                break;
+            }
+            case DIRECT_BUSY: {
+                break;
+            }
+            case DIRECT_UNREACHABLE: {
+                break;
+            }
+            case DIRECT_NONEXIST: {
+                break;
+            }
+            case FREE_DEMO_ENDED: {
+                break;
+            }
+            case ROOM_LIMIT_REACHED: {
+                break;
+            }
+            case NO_CONNECTION: {
+                break;
+            }
+            case INVALID_CREDENTIALS: {
+                break;
+            }
+            default: {      // no error
+                break;
             }
         }
     }
