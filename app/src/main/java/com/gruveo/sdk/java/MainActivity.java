@@ -76,15 +76,15 @@ public class MainActivity extends AppCompatActivity {
 
     private Gruveo.EventsListener eventsListener = new Gruveo.EventsListener() {
         @Override
+        public void callInit(boolean videoCall, String code) {
+        }
+
+        @Override
         public void requestToSignApiAuthToken(String token) {
             try {
                 Gruveo.Companion.authorize(signToken(token));
             } catch (IOException ignored) {
             }
-        }
-
-        @Override
-        public void callInit(boolean videoCall, String code) {
         }
 
         @Override
