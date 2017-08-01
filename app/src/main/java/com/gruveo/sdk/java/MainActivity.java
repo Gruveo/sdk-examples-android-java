@@ -130,15 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 case DIRECT_NONEXIST: {
                     break;
                 }
-                case DIRECT_CALLING_SELF: {
-                    break;
-                }
-                case FREE_MULTIPARTY_ENDED: {
-                    break;
-                }
-                case MULTIPARTY_NOT_SUPPORTED: {
-                    break;
-                }
                 case FREE_DEMO_ENDED: {
                     break;
                 }
@@ -151,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 case INVALID_CREDENTIALS: {
                     break;
                 }
-                case NONE: {
+                default: {      // no error
                     break;
                 }
             }
