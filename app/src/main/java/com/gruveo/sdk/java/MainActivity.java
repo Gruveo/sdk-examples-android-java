@@ -127,13 +127,13 @@ public class MainActivity extends AppCompatActivity {
             case BUSY: {
                 break;
             }
-            case DIRECT_BUSY: {
+            case HANDLE_BUSY: {
                 break;
             }
-            case DIRECT_UNREACHABLE: {
+            case HANDLE_UNREACHABLE: {
                 break;
             }
-            case DIRECT_NONEXIST: {
+            case HANDLE_NONEXIST: {
                 break;
             }
             case FREE_DEMO_ENDED: {
