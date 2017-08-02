@@ -95,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
         public void callEnd(Intent data, boolean isInForeground) {
             parseCallExtras(data);
         }
+
+        @Override
+        public void recordingStateChanged(boolean us, boolean them) {
+        }
     };
 
     private String signToken(String token) throws IOException {
