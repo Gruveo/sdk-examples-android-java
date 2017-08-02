@@ -1,9 +1,9 @@
-Gruveo SDK java example
+Gruveo SDK Java example
 =====
 
 [![Release](https://jitpack.io/v/org.bitbucket.gruveo/gruveo-sdk-android.svg)](https://jitpack.io/#org.bitbucket.gruveo/gruveo-sdk-android)
 
-With the Gruveo SDK, you can add video and voice calling support to your Android app, quickly. The SDK provides a ready-to-use, white-label activity with a video and voice calling interface that you can use right away.
+With the Gruveo SDK, you can add video and voice calling support to your Android app, quickly. The SDK provides a ready-to-use, white-label screen with a video and voice calling interface that you can use right away.
 
 Setup
 -----
@@ -34,7 +34,7 @@ Add the following activity in your manifest file:
 
 Usage
 -----
-The snippet below showcases launching a Gruveo call screen using the `demo` client ID that limits all calls to 5 minutes. The snippet uses a token signing endpoint provided by us; you will need your own server-side signing implementation in production.
+The snippet below showcases launching a Gruveo call screen using the `demo` client ID that limits all calls to 5 minutes. The snippet uses a token signing endpoint provided by us; you will need your own server-side signing implementation in production. See [SDK Authentication](https://about.gruveo.com/developers/android-sdk/authentication/) for details.
 
 ```
 private static final String SIGNER_URL = "https://api-demo.gruveo.com/signer";
@@ -73,7 +73,7 @@ private String signToken(String token) throws IOException {
     
 ```
 
-For more advanced configuration and options, check the <a href="https://github.com/Gruveo/sdk-examples-android-java/blob/master/app/src/main/java/com/gruveo/sdk/java/MainActivity.java">sample file</a>.
+For more advanced configuration and options, check the <a href="https://github.com/Gruveo/sdk-examples-android-java/blob/master/app/src/main/java/com/gruveo/sdk/java/MainActivity.java">sample file</a> and the [SDK documentation](https://about.gruveo.com/developers/android-sdk/).
 
 To request production API credentials, <a href="https://about.gruveo.com/developers/api-credentials/">get in touch</a>.
 
