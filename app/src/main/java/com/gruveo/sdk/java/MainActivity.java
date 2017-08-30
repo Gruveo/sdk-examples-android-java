@@ -152,6 +152,9 @@ public class MainActivity extends AppCompatActivity {
             case INVALID_CREDENTIALS: {
                 break;
             }
+            case UNSUPPORTED_PROTOCOL_VERSION: {
+                break;
+            }
             default: {      // no error
                 break;
             }
