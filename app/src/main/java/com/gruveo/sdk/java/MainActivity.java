@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private void initCall(Boolean videoCall) {
         final Bundle otherExtras = new Bundle();
         otherExtras.putBoolean(Gruveo.GRV_EXTRA_VIBRATE_IN_CHAT, false);
+        otherExtras.putBoolean(Gruveo.GRV_EXTRA_DISABLE_CHAT, false);
 
         final String code = ((EditText) findViewById(R.id.main_edittext)).getText().toString();
         final String result = new Gruveo.Builder(this)
