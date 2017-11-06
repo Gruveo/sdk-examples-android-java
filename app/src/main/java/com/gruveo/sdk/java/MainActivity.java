@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.gruveo.sdk.Gruveo;
-import com.gruveo.sdk.model.CallErrorType;
+import com.gruveo.sdk.model.CallEndReason;
 
 import java.io.IOException;
 
@@ -122,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void parseCallExtras(Intent data) {
-        CallErrorType error = (CallErrorType) data.getSerializableExtra(Gruveo.GRV_RES_CALL_ERROR);
+        CallEndReason endReason = (CallEndReason) data.getSerializableExtra(Gruveo.GRV_RES_CALL_END_REASON);
         String callCode = data.getStringExtra(Gruveo.GRV_RES_CALL_CODE);
         String leftMessageTo = data.getStringExtra(Gruveo.GRV_RES_LEFT_MESSAGE_TO);
         int duration = data.getIntExtra(Gruveo.GRV_RES_CALL_DURATION, 0);
         int messagesSent = data.getIntExtra(Gruveo.GRV_RES_MESSAGES_SENT, 0);
 
-        switch (error) {
+        switch (endReason) {
             case BUSY: {
                 break;
             }
@@ -156,7 +156,10 @@ public class MainActivity extends AppCompatActivity {
             case UNSUPPORTED_PROTOCOL_VERSION: {
                 break;
             }
-            default: {      // no error
+            case OTHER_PARTY: {
+                break;
+            }
+            default: {      // USER - we hanged up the call
                 break;
             }
         }
