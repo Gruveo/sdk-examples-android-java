@@ -100,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void recordingStateChanged(boolean us, boolean them) {
         }
+
+        @Override
+        public void recordingFilename(String filename) {
+        }
     };
 
     private String signToken(String token) throws IOException {
