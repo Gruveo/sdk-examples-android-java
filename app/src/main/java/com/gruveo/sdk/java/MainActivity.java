@@ -2,9 +2,10 @@ package com.gruveo.sdk.java;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.gruveo.sdk.Gruveo;
 import com.gruveo.sdk.model.CallEndReason;
@@ -29,32 +30,44 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.main_video_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initCall(true);
+                initCall(true, false);
+            }
+        });
+
+        findViewById(R.id.window_video_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initCall(true, true);
             }
         });
 
         findViewById(R.id.main_voice_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initCall(false);
+                initCall(false, false);
             }
         });
     }
 
-    private void initCall(Boolean videoCall) {
+    private void initCall(Boolean videoCall, Boolean windowCall) {
         final Bundle otherExtras = new Bundle();
         otherExtras.putBoolean(Gruveo.GRV_EXTRA_VIBRATE_IN_CHAT, false);
         otherExtras.putBoolean(Gruveo.GRV_EXTRA_DISABLE_CHAT, false);
 
         final String code = ((EditText) findViewById(R.id.main_edittext)).getText().toString();
-        final String result = new Gruveo.Builder(this)
+        final Gruveo.Builder builder = new Gruveo.Builder(this)
                 .callCode(code)
                 .videoCall(videoCall)
                 .clientId("demo")
                 .requestCode(REQUEST_CALL)
                 .otherExtras(otherExtras)
-                .eventsListener(eventsListener)
-                .build();
+                .eventsListener(eventsListener);
+
+        if (windowCall) {
+            builder.viewContainer(R.id.container_frg);
+        }
+
+        final String result = builder.build();
 
         switch (result) {
             case Gruveo.GRV_INIT_MISSING_CALL_CODE: {

@@ -1,6 +1,7 @@
 package com.gruveo.sdk.java;
 
-import android.support.multidex.MultiDexApplication;
+
+import androidx.multidex.MultiDexApplication;
 
 public class App extends MultiDexApplication {
 
