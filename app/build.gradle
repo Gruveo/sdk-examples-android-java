@@ -28,6 +28,6 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'org.bitbucket.gruveo:gruveo-sdk-android:0.7.5'
+    implementation 'org.bitbucket.gruveo:gruveo-sdk-android:0.7.6'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
