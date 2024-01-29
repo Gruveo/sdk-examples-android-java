@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.gruveo.sdk.java"
-        minSdkVersion 17
-        targetSdkVersion 29
+        minSdkVersion 19
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -28,6 +28,6 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'org.bitbucket.gruveo:gruveo-sdk-android:0.7.6'
+    implementation 'org.bitbucket.gruveo:gruveo-sdk-android:0.8.4'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
